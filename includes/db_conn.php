@@ -9,6 +9,8 @@ foreach ($db as $key => $value) {      // then we convert each index into an con
 }
 $link = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_DATABASE);      // a secure way to connect to database is to use constants
 
+mysqli_query($link,"SET CHARSET utf8");      // additional query for polish characters
+
 if(!$link){
   echo "Error";
 }
