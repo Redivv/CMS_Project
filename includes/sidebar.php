@@ -5,9 +5,9 @@
       <h4>Blog Search</h4>
       <form method="post">
         <div class="input-group">
-            <input type="text" name="search" value="<?php if(isset($_POST['search_btn'])){echo $_POST['search'];} ?>" class="form-control">
+            <input type="text" name="search" value="" class="form-control">
             <span class="input-group-btn">
-              <button name="search_btn" class="btn btn-default" type="submit">
+              <button name="search_btn" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>
               </button>
             </span>

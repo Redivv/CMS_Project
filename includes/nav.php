@@ -25,7 +25,7 @@
                }
 
               ?>
-
+              <li><a style="color:#f00;" href="admin/index.php">Admin CMS</a></li>
                 <!-- <li>
                     <a href="#">About</a>
                 </li>

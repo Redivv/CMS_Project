@@ -43,26 +43,31 @@
 
               <?php include 'includes/header.php'; ?>
 
+              <article id="blog_posts">
+
               <?php
                $query = "SELECT * FROM posts";
                $result_posts = mysqli_query($link,$query);
                while ($row = mysqli_fetch_assoc($result_posts)) { ?>
 
-              <!-- Blog Post -->
-              <h2>
-                  <a href="#"><?php echo $row['title']; ?></a>
-              </h2>
-              <p class="lead">
-                  by <a href="index.php"><?php echo $row['author']; ?></a>
-              </p>
-              <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $row['date']; ?></p>
-              <hr>
-              <img class="img-responsive post_thumbnail" src="img/<?php echo $row['img']; ?>" alt="">
-              <hr>
-              <p><?php if(strlen($row['content']) > 250){echo substr($row['content'],0,250)."...";}else{echo $row['content']."...";} ?></p>
-              <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-              <!-- /. Blog Post -->
+                <!-- Blog Post -->
+                <h2>
+                    <a href="#"><?php echo $row['title']; ?></a>
+                </h2>
+                <p class="lead">
+                    by <a href="index.php"><?php echo $row['author']; ?></a>
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $row['date']; ?></p>
+                <hr>
+                <img class="img-responsive post_thumbnail" src="img/<?php echo $row['img']; ?>" alt="">
+                <hr>
+                <p><?php if(strlen($row['content']) > 250){echo substr($row['content'],0,250)."...";}else{echo $row['content']."...";} ?></p>
+                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <!-- /. Blog Post -->
             <?php } ?>
+
+            </article>
+
           </div>
           <!-- /.Blog Entries Column -->
 
@@ -71,7 +76,7 @@
           <!-- /.Blog Sidebar Widgets Column -->
         </div>
         <!-- /.row -->
-        
+
         <hr>    <!-- hr tag means that from this point there will be a diffrently styled part of site -->
 
         <!-- Footer -->
@@ -86,6 +91,9 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- My script  -->
+    <script src="js/main.js"></script>
 
 </body>
 
