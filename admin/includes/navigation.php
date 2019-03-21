@@ -11,13 +11,14 @@
               <span class="icon-bar"></span>
           </button>
           <!-- /.Mobile burger icon -->
-          <a class="navbar-brand" href="index.html">SB Admin</a>
+          <a class="navbar-brand" href="#">SB Admin</a>
       </div>
 
       <!-- Top Menu Items -->
       <ul class="nav navbar-right top-nav">
-          <!-- Item -->
-          <li class="dropdown">
+
+          <!-- Item HIDDEN -->
+          <li class="dropdown hide">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
 
               <!-- Messages -->
@@ -79,8 +80,8 @@
           </li>
           <!-- /.Item -->
 
-          <!-- Item -->
-          <li class="dropdown">
+          <!-- Item HIDDEN -->
+          <li class="dropdown hide">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
 
               <!-- Alerts -->

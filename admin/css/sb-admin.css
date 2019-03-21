@@ -222,3 +222,12 @@ ul.alert-dropdown {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+/* Custom Classes */
+
+.error-block{
+  color:red;
+}
+.sent{
+  color: blue;
+}
