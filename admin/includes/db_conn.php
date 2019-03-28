@@ -1,5 +1,6 @@
 <?php
 declare(strict_types = 1);
+include ('processing/functions.php');
 ob_start();      // aktywuje output buffering przez co jakikolwiek output ze skryptu poza header jest blokowany
 
 $db['db_host'] = 'localhost';        // we create an array of database login data

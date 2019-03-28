@@ -27,8 +27,9 @@
                    $result_categories = mysqli_query($link,$query);
                    while ($row = mysqli_fetch_assoc($result_categories)) {
                      $cat_title = $row['title'];
+                     $cat_id = $row['id'];
 
-                     echo "<div class='col-lg-6'><li><a href='#'>$cat_title</a></li></div>";
+                     echo "<div class='col-lg-6'><li><a href='category.php?category=$cat_id'>$cat_title</a></li></div>";
                    }
 
                   ?>

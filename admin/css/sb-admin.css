@@ -231,3 +231,7 @@ ul.alert-dropdown {
 .sent{
   color: blue;
 }
+.post_thumbnail{
+  width: 100%;
+  max-height: 80px;
+}
