@@ -1,20 +1,5 @@
 <?php include 'includes/db_conn.php'; ?>
-<?php include 'processing/verification.php'; verification(2); ?>
-<?php
-
-  $post_status = "";
-
-  if((isset($_GET['dlt'])) && (!empty($_GET['dlt']))){
-    $dlt_id = intval($_GET['dlt']);
-    $query = "DELETE FROM `posts` WHERE `posts`.`id` = $dlt_id";
-
-    if(mysqli_query($link,$query)){
-      $post_status = "Usunięto post";
-    }else{
-      $post_status = "Nie ma takiego numeru posta";
-    }
-  }
- ?>
+<?php include 'processing/verification.php'; verification(1); ?>
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -35,11 +20,11 @@
             <div class="container-fluid">
 
                 <!-- Header -->
-                <?php include 'includes/header.php'; create_header('Posty', ''); ?>
+                <?php include 'includes/header.php'; create_header('Dashboard', 'podtytuł'); ?>
                 <!-- /.Header -->
 
                 <!-- Content -->
-                <?php include "includes/sections/posts_content.php"; ?>
+                <?php include "includes/sections/dashboard_content.php"; ?>
                 <!-- /.Content -->
 
             </div>
@@ -61,8 +46,6 @@
 
     <!-- Custom Js -->
     <script src="js/admin.js">
-
-    </script>
 
 </body>
 

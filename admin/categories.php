@@ -1,4 +1,5 @@
 <?php include 'includes/db_conn.php'; ?>
+<?php include 'processing/verification.php'; verification(3); ?>
 <?php
 
   $cat_title = $cat_title_err  = "";
@@ -32,7 +33,7 @@
   // /.Delete Category
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
   <?php include "includes/header_html.php"; ?>

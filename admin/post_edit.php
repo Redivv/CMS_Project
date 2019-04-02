@@ -1,4 +1,5 @@
 <?php include 'includes/db_conn.php'; ?>
+<?php include 'processing/verification.php'; verification(2); ?>
 <?php
 
   $query = "SELECT * FROM `categories`";
@@ -58,7 +59,7 @@
   }
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
   <?php include "includes/header_html.php"; ?>

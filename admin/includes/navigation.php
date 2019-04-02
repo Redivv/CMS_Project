@@ -144,6 +144,12 @@
           </li>
           <!-- /.Item -->
 
+          <!-- Item -->
+          <li>
+            <a style="color:blue;" href="logout.php">Wyloguj się gałganie</a>
+          </li>
+          <!-- /.Item -->
+
       </ul>
       <!-- /.Top menu items -->
 

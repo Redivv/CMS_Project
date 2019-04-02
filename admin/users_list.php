@@ -1,17 +1,17 @@
 <?php include 'includes/db_conn.php'; ?>
-<?php include 'processing/verification.php'; verification(2); ?>
+<?php include 'processing/verification.php'; verification(3); ?>
 <?php
 
-  $post_status = "";
+  $user_status = "";
 
   if((isset($_GET['dlt'])) && (!empty($_GET['dlt']))){
     $dlt_id = intval($_GET['dlt']);
-    $query = "DELETE FROM `posts` WHERE `posts`.`id` = $dlt_id";
+    $query = "DELETE FROM `users` WHERE `users`.`id` = $dlt_id";
 
     if(mysqli_query($link,$query)){
-      $post_status = "Usunięto post";
+      $post_status = "Usunięto użytkownika";
     }else{
-      $post_status = "Nie ma takiego numeru posta";
+      $post_status = "Nie ma takiego użytkownika";
     }
   }
  ?>
@@ -35,11 +35,11 @@
             <div class="container-fluid">
 
                 <!-- Header -->
-                <?php include 'includes/header.php'; create_header('Posty', ''); ?>
+                <?php include 'includes/header.php'; create_header('Użytkownicy', ''); ?>
                 <!-- /.Header -->
 
                 <!-- Content -->
-                <?php include "includes/sections/posts_content.php"; ?>
+                <?php include "includes/sections/usersList_content.php"; ?>
                 <!-- /.Content -->
 
             </div>

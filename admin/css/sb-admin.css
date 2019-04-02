@@ -235,3 +235,7 @@ ul.alert-dropdown {
   width: 100%;
   max-height: 80px;
 }
+.user_thumbnail{
+  max-height: 50px;
+  max-width: 50px;
+}
