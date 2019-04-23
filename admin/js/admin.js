@@ -15,4 +15,18 @@ function main(){
       location.reload();
     });
   });
+
+  $('a.delete').on('click',function(event){     // to było...trudne dzbanie ;-;
+    var you_sure = confirm("Czy na pewno chcesz usunąć?");
+    if(you_sure != true){
+      event.preventDefault();
+    }
+  });
+
+  $('a.ban').on('click',function(event){
+    var you_sure = confirm("Czy na pewno chcesz zablokować użytkownika na 1 dzień?");
+    if(you_sure != true){
+      event.preventDefault();
+    }
+  });
 }

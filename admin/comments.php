@@ -29,7 +29,11 @@
       }
     }
   }
-  $query = "SELECT `comments`.*, `posts`.`id` AS `post_id`, `posts`.`title` AS `post_title` FROM `comments` LEFT JOIN `posts` ON `comments`.`post_id` = `posts`.`id`";
+  if($_SESSION['role'] === 3){
+    $query = "SELECT `comments`.*, `posts`.`id` AS `post_id`, `posts`.`title` AS `post_title`, `users`.`username` FROM `comments` LEFT JOIN `posts` ON `comments`.`post_id` = `posts`.`id` LEFT JOIN `users` ON `comments`.`author_id` = `users`.`id`";
+  }else{
+    $query = "SELECT `comments`.*, `posts`.`id` AS `post_id`, `posts`.`title` AS `post_title`, `users`.`username` FROM `comments` LEFT JOIN `posts` ON `comments`.`post_id` = `posts`.`id` LEFT JOIN `users` ON `comments`.`author_id` = `users`.`id` WHERE `comments`.`author_id` = {$_SESSION['id']}";
+  }
   if($result = mysqli_query($link,$query)){
     $comments = array();
     $i = 1;

@@ -9,7 +9,7 @@
       <article id="blog_posts">
 
       <?php
-       $query = "SELECT * FROM posts";
+       $query = "SELECT * FROM posts WHERE status = 'Publiczny'";
        $result_posts = mysqli_query($link,$query);
        while ($row = mysqli_fetch_assoc($result_posts)) { ?>
 

@@ -1,24 +1,30 @@
 <?php require 'includes/db_conn.php'; ?>
 <?php
+  session_start();
 
-  $username = $password = $confirm_password = "";        // inicjujemy puste zmienne
-  $username_err = $password_err = $confirm_password_err = "";
+  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){      // jeśli przypadkiem użytkownik jest już zalogowany na sesji to przenosi go na stronę główną
+    header("location: dashboard.php");
+    exit;        // dosłownie - ekwiwalent do die() i vice versa -_-
+  }
+
+  $username = $mail = $password = $confirm_password = "";        // inicjujemy puste zmienne
+  $username_err = $email_err = $password_err = $confirm_password_err = "";
 
   if($_SERVER['REQUEST_METHOD'] == "POST"){
 
     // Walidacja Nazwy Użytkownika
-    if(empty(trim($_POST["username"]))){
+    if(empty(trim($_POST["user"]))){
         $username_err = "Please enter a username.";      // błąd do wypisania
     } else{
 
-            $param_username = trim($_POST["username"]);      // przypisuje wartość z formularza pod zmienną
+            $param_username = trim($_POST["user"]);      // przypisuje wartość z formularza pod zmienną
             $query = "SELECT id FROM users WHERE username = '$param_username'";
 
             if($result = mysqli_query($link,$query)){      // próbuję wykonać zapytanie
                 if(mysqli_num_rows($result) == 1){
                     $username_err = "Ta nazwa użytkownika jest już zajęta";      // jeśli znaleziono username - przypisać bład
                 } else{
-                    $username = trim($_POST["username"]);      // w przeciwnym razie mamy gotowy username
+                    $username = trim($_POST["user"]);      // w przeciwnym razie mamy gotowy username
                 }
             } else{
                 echo "Wystąpił bład";      // ogólny błąd jeśli coś pierdolnie
@@ -91,8 +97,13 @@
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">  <!-- htmlspecialchars zmienia magiczne znaki na htmlowe a w $_SERVER['PHP_SELF'] znajduje się aktualny adres więc tutaj w bezpieczny sposób oznaczamy że formularz będzie przerabiany na tej samej stronie -->
       <div class="form-group">
         <label for="">Nazwa użytkownika</label>
-        <input type="text" class="form-control" name="username" value="<?php echo $username; ?>">
+        <input type="text" class="form-control" name="user" value="<?php echo $username; ?>">
         <div class="error-block"><?php echo $username_err; ?></div>
+      </div>
+      <div class="form-group">
+        <label for="">E-mail</label>
+        <input type="text" class="form-control" name="username" value="<?php echo $username; ?>">
+        <div class="error-block"><?php echo $email_err; ?></div>
       </div>
       <div class="form-group">
         <label for="">Hasło</label>

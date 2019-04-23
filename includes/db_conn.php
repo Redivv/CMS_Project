@@ -17,4 +17,13 @@ if(!$link){
   echo "Error";
 }
 
+session_start();
+$username = $_SESSION['username'];
+$query = "SELECT `users`.`role` FROM `users` WHERE `users`.`username` = '$username'";
+$result = mysqli_fetch_assoc(mysqli_query($link,$query));
+if($result['role'] != $_SESSION['role']){
+  header('location: admin/logout.php');
+}
+session_abort();
+
  ?>

@@ -40,7 +40,7 @@
              <th scope="row"><?php echo $cat_id; ?></th>
              <td><?php echo $cat_title; ?></td>
              <td>
-               <a class="btn-link" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?dlt='.$cat_id; ?>">Usuń</a>
+               <a class="btn-link delete" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?dlt='.$cat_id; ?>">Usuń</a>
                <button class="edit-btn btn-link" data-id="<?php echo $cat_id; ?>" data-title = "<?php echo $cat_title; ?>">Edytuj</button>
              </td>
            </tr>

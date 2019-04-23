@@ -12,8 +12,8 @@
     <!-- Do poprawienia po dodaniu systemu logowania -->
     <div class="form-group">
       <label for="author">Autor</label>
-      <select id="author" name="author" class="form-control">
-        <option value="autor">Autor</option>
+      <select id="author" name="author" disabled class="form-control">
+        <option value="autor"><?php echo $_SESSION['username']; ?></option>
       </select>
     </div>
     <!-- Do poprawienia po dodaniu systemu logowania -->
@@ -29,7 +29,8 @@
     <div class="form-group">
       <label for="status">Status</label>
       <select id="status" class="form-control" name="status">
-        <option value="status">Status</option>
+        <option selected value="<?php echo $status ?>"><?php echo $status ?></option>
+        <?php echo ($status === "Ukryty") ? '<option value="Publiczny">Publiczny</option>' : '<option value="Ukryty">Ukryty</option>' ?>
       </select>
     </div>
     <div class="form-group">
@@ -40,9 +41,10 @@
         </div>
       </label>
       <input id="thumbnail" name="thumbnail" type="file">
+      <input type="hidden" name="old_thumb" value="<?php echo $img ?>">
     </div>
     <div class="form-group">
-      <label for="tags">Tagi</label>
+      <label for="tags">Tagi (oddzielone przecinkami)</label>
       <input id="tags" name="tags" type="text" value="<?php echo $tags; ?>" class="form-control">
     </div>
     <div class="form-group">

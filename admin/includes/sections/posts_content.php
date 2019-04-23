@@ -17,7 +17,11 @@
     </thead>
     <tbody>
       <?php
-      $query = "SELECT `posts`.* , `categories`.`title` AS `category` FROM `posts` LEFT JOIN `categories` ON `posts`.`category_id` = `categories`.`id`";  // left joinuję tabelę z nazwami kategorii aby je wyświetlić
+      if ($_SESSION['role'] === 3) {
+        $query = "SELECT `posts`.* , `categories`.`title` AS `category` FROM `posts` LEFT JOIN `categories` ON `posts`.`category_id` = `categories`.`id`";  // left joinuję tabelę z nazwami kategorii aby je wyświetlić
+      }else{
+        $query = "SELECT `posts`.* , `categories`.`title` AS `category` FROM `posts` LEFT JOIN `categories` ON `posts`.`category_id` = `categories`.`id` WHERE `posts`.`author` = '$_SESSION[username]'";  // left joinuję tabelę z nazwami kategorii aby je wyświetlić
+      }
       if($result_posts = mysqli_query($link,$query)){
         while ($row = mysqli_fetch_assoc($result_posts)) { ?>
           <tr>
@@ -32,7 +36,7 @@
             <td><?php echo $row['date']; ?></td>
             <td>
               <a href = "post_edit.php?id=<?php echo $row['id']; ?>" class="btn-link">Edytuj</a>
-              <a class="btn-link" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?dlt='.$row['id']; ?>">Usuń</a>
+              <a class="btn-link delete" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?dlt='.$row['id']; ?>">Usuń</a>
             </td>
           </tr>
     <?php }}else{echo "Błąd ".mysqli_error($link);} ?>

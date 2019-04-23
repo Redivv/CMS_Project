@@ -5,5 +5,6 @@
       header("location: index.php");
       exit;        // dosłownie - ekwiwalent do die() i vice versa -_-
     }
+    session_abort();
   }
  ?>

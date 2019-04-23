@@ -3,10 +3,10 @@
 
     $search = htmlspecialchars(mysqli_real_escape_string($link,$_REQUEST['wanted']));
     if(!empty($search)){
-      $query = "SELECT * FROM posts WHERE tags LIKE '%$search%'";
+      $query = "SELECT * FROM posts WHERE tags LIKE '%$search%' AND status = 'Publiczny'";
     }
     else{
-      $query = "SELECT * FROM posts";
+      $query = "SELECT * FROM posts WHERE status = 'Publiczny'";
     }
     $search_results = mysqli_query($link,$query);
       if(!$search_results){

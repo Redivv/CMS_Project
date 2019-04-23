@@ -15,11 +15,11 @@
           <tr>
             <th span="row"><?php echo $v['id']; ?></th>
             <td><?php echo $v['post_title']; ?></td>
-            <td><?php echo $v['author']; ?></td>
+            <td><?php echo $v['username']; ?></td>
             <td><?php echo $v['content']; ?></td>
             <td><?php echo $v['date']; ?></td>
             <td>
-              <a class="btn-link" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])."?del=".$v['id'];?>">Usuń</a>
+              <a class="btn-link delete" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"])."?del=".$v['id'];?>">Usuń</a>
             </td>
           </tr>
       <?php } ?>

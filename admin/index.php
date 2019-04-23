@@ -27,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   // Walidacja konta
   if(empty($username_err) && empty($password_err)){
 
-      $query = "SELECT `users`.`id`, `users`.`username`, `users`.`password`,`users`.`role` FROM `users` WHERE `users`.`username` = '$username'";    // przygotowuję zapytanie do wyszukania danych użytkownia po UNIKALNYM username
+      $query = "SELECT `users`.`id`, `users`.`username`, `users`.`password`,`users`.`role`, `users`.`thumbnail` FROM `users` WHERE `users`.`username` = '$username'";    // przygotowuję zapytanie do wyszukania danych użytkownia po UNIKALNYM username
 
       if($result = mysqli_query($link,$query)){
 
@@ -37,6 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                      $username = $row["username"];
                      $hashed_password = $row["password"];
                      $role = $row['role'];
+                     $img = $row['thumbnail'];
                      if(password_verify($password, $hashed_password)){    // jako że hash i sól znajdują się w bazie danych to wystarczy funkcją verivy porównać hasło zwykłe z już zahashowanym
 
                          session_start();    // jeśli hasło się zgadza - zaczynamy nową sesję
@@ -44,9 +45,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                          $_SESSION["loggedin"] = true;    // użytkownik jest zalogowany
                          $_SESSION["id"] = $id;   // id sesji (jak i użytkownika)
                          $_SESSION["username"] = htmlspecialchars($username);  // zalogowany użytkownik
-                         $_SESSION['role'] = htmlspecialchars($role);
+                         $_SESSION['role'] = intVal(htmlspecialchars($role));
+                         $_SESSION['thumb'] = htmlspecialchars($img);
 
-                         header("location: index.php");  // przeniesienie na admina
+                         header("location: ../index.php");  // przeniesienie na admina
                      }else{
                          $password_err = "Hasło jest nieprawidłowe";    // jeśli hasła się nie zgadzają to nie się nie zgadzają
                      }
@@ -107,6 +109,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <div class="col-md-12">
         <h4>Nie masz konta?</h4>
         <a class="btn btn-primary" href="singup.php">Zarejestruj Się</a>
+      </div>
+    </div>
+    <div class="row" style="margin-top:1%;">
+      <div class="col-md-12">
+        <a class="btn btn-primary" href="../">Wróć na stronę główną</a>
       </div>
     </div>
   </div>

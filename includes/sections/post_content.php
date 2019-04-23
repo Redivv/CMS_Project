@@ -33,61 +33,47 @@
         <!-- Blog Comments -->
 
         <!-- Comments Form -->
+        <?php
+        if(isset($_SESSION["loggedin"]) && ($_SESSION["loggedin"] == true) && ($_SESSION['role'] >= 2)){  ?>
         <div class="well">
-            <h4>Zostaw Komentarz</h4>
+            <h4>Dodaj komentarz</h4>
             <form role="form">
               <div class="form-group">
-                <label for="">Treść</label>
-                <textarea class="form-control" name="name" rows="3"></textarea>
+                <textarea id="comment_content" data-post="<?php echo $post_id; ?>" data-author="<?php echo $_SESSION['id']; ?>" class="form-control" name="comment" rows="3"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button name="comment_btn" type="submit" class="btn btn-primary" disabled>Submit</button>
             </form>
+            <div id="comment_error_block"></div>
         </div>
+       <?php
+       }else{ ?>
+       <div class="well">
+           <h4><?php echo (isset($_SESSION['role'])) ? 'Zostałeś Zablokowany' : 'Zaloguj Się aby zostawić komentarz'; ?></h4>
+           <form role="form">
+             <div class="form-group">
+               <textarea class="form-control" name="name" rows="3" disabled></textarea>
+             </div>
+             <button type="submit" class="btn btn-primary" disabled>Submit</button>
+           </form>
+           <div id="comment_error_block"></div>
+       </div>
+     <?php } ?>
+     <!-- /.Comments Form -->
 
         <hr>
 
-        <!-- Posted Comments -->
+      <!-- Posted Comments -->
+      <?php
+        if(!isset($_SESSION["loggedin"]) || ($_SESSION["loggedin"] !== true) || ($_SESSION['role'] <= 1)){      // jeśli przypadkiem użytkownik jest już zalogowany na sesji to przenosi go na stronę główną
+          include 'includes/comments_guest.php';
+        }else{
+          include "includes/comments.php";
+        }
+       ?>
+      <!-- /.Posted Comments -->
 
-        <!-- Comment -->
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="http://placehold.it/64x64" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">Start Bootstrap
-                    <small>August 25, 2014 at 9:30 PM</small>
-                </h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-            </div>
-        </div>
-
-        <!-- Comment -->
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="http://placehold.it/64x64" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">Start Bootstrap
-                    <small>August 25, 2014 at 9:30 PM</small>
-                </h4>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                <!-- Nested Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Nested Start Bootstrap
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </div>
-                <!-- End Nested Comment -->
-            </div>
-        </div>
-    </div>
   </div>
+</div>
   <!-- /.row -->
 
   <hr>

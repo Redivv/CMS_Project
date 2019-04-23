@@ -10,6 +10,7 @@
     }
   }
   $post_id = $category = $title = $img = $tags = $content = "";
+  $status = "Ukryty";
 
   if($_SERVER['REQUEST_METHOD'] == "GET"){
     if((isset($_GET['id'])) && (!empty($_GET['id']))){
@@ -21,6 +22,7 @@
         $tags = $result['tags'];
         $content = $result['content'];
         $category = $result['category_id'];
+        $status = $result['status'];
       }else{
         $post_status = "Taki post nie istnieje";
       }
@@ -33,9 +35,9 @@
       $post_id = (!empty($_POST['post_id'])) ? $_POST['post_id'] : '';
       $new_post = array();
       $new_post[0] = $_POST['title'];
-      $new_post[1] = (!empty($_POST['author'])) ? mysqli_real_escape_string($link,$_POST['author']) : 'autor'; // powiniene dodać aktualnie zalogowanego użytkownika ale to potem
+      $new_post[1] = (!empty($_POST['author'])) ? mysqli_real_escape_string($link,$_POST['author']) : $_SESSION['username']; // powiniene dodać aktualnie zalogowanego użytkownika ale to potem
       $new_post[2] = (!empty($_POST['category'])) ? intval(mysqli_real_escape_string($link,$_POST['category'])) : 'kategoria';
-      $new_post[3] = (!empty($_POST['status'])) ? mysqli_real_escape_string($link,$_POST['status']) : 'status';
+      $new_post[3] = (!empty($_POST['status'])) ? mysqli_real_escape_string($link,$_POST['status']) : 'ukryty';
       $new_post[4] = ($_FILES['thumbnail']['size'] > 0) ? mysqli_real_escape_string($link,upload_image($_FILES['thumbnail'])) : '';
       $new_post[5] = (!empty($_POST['tags'])) ? mysqli_real_escape_string($link,$_POST['tags']) : 'tagi';
       $new_post[6] = (!empty($_POST['content'])) ? mysqli_real_escape_string($link,$_POST['content']) : 'treść';
@@ -50,6 +52,7 @@
       }
       if(mysqli_query($link, $query)){
         $post_status = "Dane zapisano";
+        unlink($_POST['old_thumb']);
       }else{
         $post_status = "Wystąpił błąd";
       }

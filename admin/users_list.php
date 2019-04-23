@@ -4,14 +4,39 @@
 
   $user_status = "";
 
-  if((isset($_GET['dlt'])) && (!empty($_GET['dlt']))){
-    $dlt_id = intval($_GET['dlt']);
-    $query = "DELETE FROM `users` WHERE `users`.`id` = $dlt_id";
+  if($_SERVER['REQUEST_METHOD'] === "GET"){
 
-    if(mysqli_query($link,$query)){
-      $post_status = "Usunięto użytkownika";
-    }else{
-      $post_status = "Nie ma takiego użytkownika";
+    if((isset($_GET['dlt'])) && (!empty($_GET['dlt']))){
+      $dlt_id = intval($_GET['dlt']);
+      $query = "DELETE FROM `users` WHERE `users`.`id` = $dlt_id";
+
+      if(mysqli_query($link,$query)){
+        $user_status = "Usunięto użytkownika";
+      }else{
+        $user_status = "Nie ma takiego użytkownika";
+      }
+    }
+
+    if((isset($_GET['ban'])) && (!empty($_GET['ban']))){
+      $user_id = ($_GET['ban'] === '1') ? 'Błąd' : $_GET['ban'];
+      $ban_date = date('Y-m-d');
+      $ban_date = date('Y-m-d', strtotime($ban_date.' + 1 days'));
+      $query = "UPDATE `users` SET `users`.`role` = 1, `users`.`ban_date` = $ban_date WHERE `users`.`id` = {$user_id};";
+      if(mysqli_query($link,$query)){
+        $user_status = "Zablokowano użytkownika na 1 dzień";
+      }else{
+        $user_status = "Nie ma takiego użytkownika";
+      }
+    }
+
+    if((isset($_GET['reban'])) && (!empty($_GET['reban']))){
+      $user_id = $_GET['reban'];
+      $query = "UPDATE `users` SET `users`.`role` = 2, `users`.`ban_date` = '' WHERE `users`.`id` = {$user_id};";
+      if(mysqli_query($link,$query)){
+        $user_status = "Odblokowano Użytkownika";
+      }else{
+        $user_status = "Nie ma takiego użytkownika";
+      }
     }
   }
  ?>

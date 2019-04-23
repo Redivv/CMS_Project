@@ -236,6 +236,17 @@ ul.alert-dropdown {
   max-height: 80px;
 }
 .user_thumbnail{
-  max-height: 50px;
-  max-width: 50px;
+  max-height: 40px;
+  max-width: 40px;
+}
+.ban{
+  color: red;
+  margin-left: 5%;
+}
+#user_avatar{
+  max-width: 20px;
+  max-height: 20px;
+}
+.profile-user_thumbnail{
+  margin: 10% 0;
 }

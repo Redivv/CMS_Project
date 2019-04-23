@@ -11,7 +11,7 @@
               <span class="icon-bar"></span>
           </button>
           <!-- /.Mobile burger icon -->
-          <a class="navbar-brand" href="#">SB Admin</a>
+          <a class="navbar-brand" href="dashboard.php">Panel Użytkownika</a>
       </div>
 
       <!-- Top Menu Items -->
@@ -114,23 +114,29 @@
           <!-- /.Item -->
 
           <!-- Item -->
+          <li>
+            <a style="color:red;" href="../index.php">Do strony głównej</a>
+          </li>
+          <!-- /.Item -->
+
+          <!-- Item -->
           <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+              <a style="text-align:center;" href="#" class="dropdown-toggle" data-toggle="dropdown"><img id="user_avatar" src="../img/uploads/<?php echo $_SESSION['thumb']; ?>"><?php echo ' '.$_SESSION['username']; ?><b class="caret"></b></a>
 
               <!-- User -->
               <ul class="dropdown-menu">
                   <li>
-                      <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                    <a href="dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                   </li>
                   <li>
-                      <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                    <a href="profile.php"><i class="fa fa-fw fa-edit"></i> Profil</a>
                   </li>
                   <li>
-                      <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                    <a href="post_edit.php"><i class="fa fa-fw fa-plus"></i> Dodaj Post</a>
                   </li>
                   <li class="divider"></li>
                   <li>
-                      <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="logout.php"><i class="fa fa-fw fa-power-off"></i>Wyloguj Się</a>
                   </li>
               </ul>
               <!-- /.User -->
@@ -138,23 +144,25 @@
           </li>
           <!-- /.Item -->
 
-          <!-- Item -->
-          <li>
-            <a style="color:red;" href="../index.php">Do strony głównej</a>
-          </li>
-          <!-- /.Item -->
-
-          <!-- Item -->
-          <li>
-            <a style="color:blue;" href="logout.php">Wyloguj się gałganie</a>
-          </li>
-          <!-- /.Item -->
-
       </ul>
       <!-- /.Top menu items -->
 
       <!-- Sidebar -->
-      <?php include "sidebar.php"; ?>
+      <?php switch ($_SESSION['role']) {
+        case 3:
+          include "sidebar_admin.php";
+          break;
+        case 2:
+          include 'sidebar_author.php';
+          break;
+        case 1:
+          include 'sidebar_user.php';
+          break;
+
+        default:
+          echo "Wystąpił Bład";
+          die;
+      } ?>
       <!-- /.Sidebar -->
 
       <!-- /.navbar-collapse -->
