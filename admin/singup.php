@@ -7,7 +7,7 @@
     exit;        // dosłownie - ekwiwalent do die() i vice versa -_-
   }
 
-  $username = $mail = $password = $confirm_password = "";        // inicjujemy puste zmienne
+  $username = $email = $password = $confirm_password = "";        // inicjujemy puste zmienne
   $username_err = $email_err = $password_err = $confirm_password_err = "";
 
   if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -32,6 +32,28 @@
         }
         // /.Walidacja Nazwy Użytkownika
 
+        // Walidacja Maila
+        if (empty(trim($_POST['email']))) {
+          $email_err = "Podaj adres Email";
+        }else {
+          $param_email = trim($_POST['email']);
+          $query = "SELECT id FROM users WHERE email = '$param_email'";
+          if($result = mysqli_query($link,$query)){      // próbuję wykonać zapytanie
+              if(mysqli_num_rows($result) == 1){
+                  $email_err = "Ten adres email jest już powiązany z kontem";      // jeśli znaleziono username - przypisać bład
+              }else{
+                if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+                  $email = trim($_POST["email"]);      // w przeciwnym razie mamy gotowy username
+                }else {
+                  $email_err = "Niepoprawny adres email";
+                }
+              }
+          }else{
+              echo "Wystąpił bład";      // ogólny błąd jeśli coś pierdolnie
+          }
+        }
+        // /. Walidacja Maila
+
         // Walidacja Hasła
         if(empty(trim($_POST["password"]))){
           $password_err = "Podaj hasło";
@@ -53,13 +75,19 @@
 
         if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){      // Po walidacji sprawdzane jest istnienie błedów
 
-            $param_username = $username;      // zmienne są przypisywane
-            $param_password = password_hash($password, PASSWORD_DEFAULT);   // Hasło jest hashowane za pomocą funkcji (algorytm DEFAULT jest zmienianiy i ulepszany z wersji na wersję)
+            $ready_username = $username;      // zmienne są przypisywane
+            $ready_password = password_hash($password, PASSWORD_DEFAULT);   // Hasło jest hashowane za pomocą funkcji (algorytm DEFAULT jest zmienianiy i ulepszany z wersji na wersję)
+            $ready_email = $email;
+            $ready_hash = bin2hex(random_bytes(rand(10,32)));
 
-            $query = "INSERT INTO users (username, password) VALUES ('$param_username', '$param_password')";      // po zdanej walidacji przygtowujemy INSERT do bazy danych
+            $query = "INSERT INTO users (username, password,email,hash) VALUES ('$ready_username', '$ready_password', '$ready_email', '$ready_hash' )";      // po zdanej walidacji przygtowujemy INSERT do bazy danych
 
             if(mysqli_query($link,$query)){
-              header("location: index.php");      // jeśli udało się dodać nowego użytkownika to redirect na stronę logowania
+              $new_id = mysqli_insert_id($link);
+              $subject = "Account Activation";
+              $message = 'Hello and welcome to my BlogPost! Activation Link : http://port.loc/admin/index.php?id='.$new_id.'&code='.$ready_hash;
+              send_verification_mail($ready_email,$subject,$message);
+              $confirm_password_err = "Na podany adres email został wysłany link aktywacyjny";
             }else{
               echo "Wystąpił Błąd";     // a jak nie to nie
             }
@@ -96,23 +124,23 @@
     </div>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">  <!-- htmlspecialchars zmienia magiczne znaki na htmlowe a w $_SERVER['PHP_SELF'] znajduje się aktualny adres więc tutaj w bezpieczny sposób oznaczamy że formularz będzie przerabiany na tej samej stronie -->
       <div class="form-group">
-        <label for="">Nazwa użytkownika</label>
-        <input type="text" class="form-control" name="user" value="<?php echo $username; ?>">
+        <label for="">Nazwa użytkownika*</label>
+        <input required type="text" class="form-control" name="user" value="<?php echo $username; ?>">
         <div class="error-block"><?php echo $username_err; ?></div>
       </div>
       <div class="form-group">
-        <label for="">E-mail</label>
-        <input type="text" class="form-control" name="username" value="<?php echo $username; ?>">
+        <label for="">E-mail*</label>
+        <input required type="email" class="form-control" name="email" value="<?php echo $email; ?>">
         <div class="error-block"><?php echo $email_err; ?></div>
       </div>
       <div class="form-group">
-        <label for="">Hasło</label>
-        <input type="password" class="form-control" name="password" value="<?php echo $password; ?>">
+        <label for="">Hasło*</label>
+        <input required type="password" class="form-control" name="password" value="<?php echo $password; ?>">
         <div class="error-block"><?php echo $password_err;?></div>
       </div>
       <div class="form-group">
-        <label for="">Powtórz Hasło</label>
-        <input type="password" class="form-control" name="confirm_password" value="<?php echo $confirm_password; ?>">
+        <label for="">Powtórz Hasło*</label>
+        <input required type="password" class="form-control" name="confirm_password" value="<?php echo $confirm_password; ?>">
         <div class="error-block"><?php echo $confirm_password_err;?></div>
       </div>
       <button class="btn btn-block btn-primary" type="submit" name="send_form">Zarejestruj Się</button>

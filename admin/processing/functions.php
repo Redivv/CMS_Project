@@ -41,4 +41,21 @@
           return basename($uploadfile);
       }
     }
+
+    function send_verification_mail(string $target, string $title, string $mail) : bool{
+
+        $to      = $target;
+        $subject = $title;
+        $message = $mail;
+        $headers = 'From: Local Blog' . "\r\n" .
+            'Reply-To: j.rajca45@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        if(mail($to, $subject, $message, $headers)){
+          return true;
+        }else{
+          return false;
+        }
+
+    }
  ?>

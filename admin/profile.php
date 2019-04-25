@@ -1,8 +1,8 @@
 <?php include 'includes/db_conn.php'; ?>
 <?php include 'processing/verification.php'; verification(1); ?>
 <?php
-
   session_start();
+  
 
  ?>
 <!DOCTYPE html>
