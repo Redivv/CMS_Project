@@ -18,11 +18,12 @@ if(!$link){
 }
 
 session_start();
-$username = $_SESSION['username'];
+$username = (isset($_SESSION['username'])) ? $_SESSION['username'] : '';
+$role = (isset($_SESSION['role'])) ? $_SESSION['role'] : '';
 $query = "SELECT `users`.`role` FROM `users` WHERE `users`.`username` = '$username'";
 $result = mysqli_fetch_assoc(mysqli_query($link,$query));
-if($result['role'] != $_SESSION['role']){
-  header('location: admin/logout.php');
+if($result['role'] != $role){
+  header('location: logout.php');
 }
 session_abort();
 

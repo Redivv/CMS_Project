@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     if ((!empty(trim($_GET['id']))) && (!empty(trim($_GET['code'])))) {
       $user_id = intVal($_GET['id']);
       $hash = $_GET['code'];
-      if(mysqli_query($link,"UPDATE `users` SET `role` = 2 WHERE `users`.`id`= {$user_id} AND `users`.`hash` = '$hash' AND `users`.`ban_date` = '0000-00-00'; ")){
+      if(mysqli_query($link,"UPDATE `users` SET `users`.`role` = 2, `users`.`hash` = NULL WHERE `users`.`id`= {$user_id} AND `users`.`hash` = '$hash' AND `users`.`ban_date` = '0000-00-00'; ")){
         $username_err = "Konto Zostało Aktywowane";
       }else{
         $username_err = "Błedne Dane";
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
   // Walidacja konta
   if(empty(trim($username_err)) && empty(trim($password_err))){
 
-      $query = "SELECT `users`.`id`, `users`.`username`, `users`.`password`,`users`.`role`, `users`.`thumbnail` FROM `users` WHERE `users`.`username` = '$username' OR `users`.`email` = '$username';";    // przygotowuję zapytanie do wyszukania danych użytkownia po UNIKALNYM username
+      $query = "SELECT `users`.`id`, `users`.`username`, `users`.`password`,`users`.`role`, `users`.`thumbnail`, `users`.`email` FROM `users` WHERE (`users`.`username` = '$username' OR `users`.`email` = '$username') AND `users`.`role` > 0;";    // przygotowuję zapytanie do wyszukania danych użytkownia po UNIKALNYM username
 
       if($result = mysqli_query($link,$query)){
 
@@ -52,6 +52,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                      $hashed_password = $row["password"];
                      $role = $row['role'];
                      $img = $row['thumbnail'];
+                     $email = $row['email'];
                      if(password_verify($password, $hashed_password)){    // jako że hash i sól znajdują się w bazie danych to wystarczy funkcją verivy porównać hasło zwykłe z już zahashowanym
 
                          session_start();    // jeśli hasło się zgadza - zaczynamy nową sesję
@@ -61,6 +62,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                          $_SESSION["username"] = htmlspecialchars($username);  // zalogowany użytkownik
                          $_SESSION['role'] = intVal(htmlspecialchars($role));
                          $_SESSION['thumb'] = htmlspecialchars($img);
+                         $_SESSION['email'] = htmlspecialchars($email);
 
                          header("location: ../index.php");  // przeniesienie na admina
                      }else{
@@ -68,7 +70,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                      }
                  }
              }else{
-                 $username_err = "Nie znaleziono konta z daną nazwą";    // jeśli nie znaleziono wgl takiego użytkownika to go nie znaleziono
+                 $username_err = "Nie znaleziono konta z daną nazwą bądź jest ono nieaktywne";    // jeśli nie znaleziono wgl takiego użytkownika to go nie znaleziono
              }
      }else{
        echo "Wystąpił błąd <br>".mysqli_error($link);

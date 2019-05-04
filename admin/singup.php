@@ -85,7 +85,7 @@
             if(mysqli_query($link,$query)){
               $new_id = mysqli_insert_id($link);
               $subject = "Account Activation";
-              $message = 'Hello and welcome to my BlogPost! Activation Link : http://port.loc/admin/index.php?id='.$new_id.'&code='.$ready_hash;
+              $message = 'Witaj na Gliniane Dzbany Blog! Link Aktywacyjny : <a href="http://port.loc/admin/index.php?id='.$new_id.'&code='.$ready_hash.'>Aktywuj Konto</a>"';
               send_verification_mail($ready_email,$subject,$message);
               $confirm_password_err = "Na podany adres email został wysłany link aktywacyjny";
             }else{

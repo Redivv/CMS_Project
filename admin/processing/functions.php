@@ -14,8 +14,7 @@
           do {
               $file = $path."/".mt_rand().$suffix;
               $fp = @fopen($file, 'x');
-          }
-          while(!$fp);
+          }while(!$fp);
 
           fclose($fp);
           return $file;

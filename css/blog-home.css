@@ -18,13 +18,15 @@ footer {
 }
 
 #user_avatar{
-  max-width: 20px;
-  max-height: 20px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
 }
 
 .comment_avatar{
-  max-width: 64px;
-  max-height: 64px;
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
 }
 
 #comment_error_block{
@@ -33,7 +35,7 @@ footer {
 
 .response,.edit,.delete{
   text-transform: uppercase;
-  font-size: 90%;
+  font-size: 80%;
   font-weight: bold;
   color: blue;
 }
