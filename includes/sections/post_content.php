@@ -21,7 +21,7 @@
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-responsive" src="<?php echo $img; ?>" alt="">
+        <img class="img-responsive post_thumbnail" src="<?php echo $img; ?>" alt="">
 
         <hr>
 

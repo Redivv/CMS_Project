@@ -65,9 +65,6 @@
         </div>
         <!-- /.page-wrapper -->
 
-        <!-- Footer -->
-        <?php include "includes/footer.php"; ?>
-        <!-- /.Footer -->
     </div>
     <!-- /.wrapper -->
     <!-- jQuery -->
@@ -77,9 +74,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom Js -->
-    <script src="js/admin.js">
-
-    </script>
+    <script src="js/admin.js"></script>
 
 </body>
 

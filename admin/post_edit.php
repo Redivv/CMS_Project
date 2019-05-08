@@ -36,9 +36,9 @@
       $new_post = array();
       $new_post[0] = $_POST['title'];
       $new_post[1] = (!empty($_POST['author'])) ? mysqli_real_escape_string($link,$_POST['author']) : $_SESSION['username']; // powiniene dodać aktualnie zalogowanego użytkownika ale to potem
-      $new_post[2] = (!empty($_POST['category'])) ? intval(mysqli_real_escape_string($link,$_POST['category'])) : 'kategoria';
+      $new_post[2] = (!empty($_POST['category'])) ? intval(mysqli_real_escape_string($link,$_POST['category'])) : 0;
       $new_post[3] = (!empty($_POST['status'])) ? mysqli_real_escape_string($link,$_POST['status']) : 'ukryty';
-      $new_post[4] = ($_FILES['thumbnail']['size'] > 0) ? mysqli_real_escape_string($link,upload_image($_FILES['thumbnail'])) : '';
+      $new_post[4] = ($_FILES['thumbnail']['size'] > 0) ? mysqli_real_escape_string($link,upload_image($_FILES['thumbnail'])) : 'post_normal_thumb.jpg';
       $new_post[5] = (!empty($_POST['tags'])) ? mysqli_real_escape_string($link,$_POST['tags']) : 'tagi';
       $new_post[6] = (!empty($_POST['content'])) ? mysqli_real_escape_string($link,$_POST['content']) : 'treść';
       $new_post[7] = date('Y-m-d');
@@ -52,7 +52,9 @@
       }
       if(mysqli_query($link, $query)){
         $post_status = "Dane zapisano";
-        unlink($_POST['old_thumb']);
+        if ((!empty($_POST['old_thumb'])) && ($_POST['old_thumb'] != '../img/uploads/post_normal_thumb.jpg')) {
+          unlink($_POST['old_thumb']);
+        }
       }else{
         $post_status = "Wystąpił błąd";
       }
@@ -94,9 +96,6 @@
         </div>
         <!-- /.page-wrapper -->
 
-        <!-- Footer -->
-        <?php include "includes/footer.php"; ?>
-        <!-- /.Footer -->
     </div>
     <!-- /.wrapper -->
     <!-- jQuery -->
@@ -106,9 +105,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom Js -->
-    <script src="js/admin.js">
-
-    </script>
+    <script src="js/admin.js"></script>
 
 </body>
 

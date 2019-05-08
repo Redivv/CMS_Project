@@ -93,7 +93,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom Js -->
-    <script src="js/admin.js">
+    <script src="js/admin.js"></script>
 
 </body>
 

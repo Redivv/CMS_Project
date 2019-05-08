@@ -37,7 +37,7 @@
       <label for="thumbnail">
         Miniatura
         <div class="thumbnail-box" style="color:red">
-          <img src="<?php echo $img; ?>" alt="">
+          <img class="post-edit_thumbnail" src="<?php echo (!empty($img)) ? $img : '../img/uploads/post_normal_thumb.jpg'; ?>" alt="">
         </div>
       </label>
       <input id="thumbnail" name="thumbnail" type="file">

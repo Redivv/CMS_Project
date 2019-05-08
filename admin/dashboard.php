@@ -33,19 +33,21 @@
         </div>
         <!-- /.page-wrapper -->
 
-        <!-- Footer -->
-        <?php include "includes/footer.php"; ?>
-        <!-- /.Footer -->
     </div>
     <!-- /.wrapper -->
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+
+    <!-- Google Charts -->
+    <script src="js/google_charts/google_chart.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom Js -->
-    <script src="js/admin.js">
+    <script src="js/admin.js"></script>
+    <script src="js/google_charts/dashboard_chart.js"></script>
 
 </body>
 

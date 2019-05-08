@@ -10,15 +10,15 @@
       <th scope="col">Nazwisko</th>
       <th scope="col">Mail</th>
       <th scope="col">Miniatura</th>
-      <th scope="col">Rola</th>
+      <th scope="col">Stan Konta</th>
       <th scope="col">Opcje</th>
     </thead>
     <tbody>
       <?php
       if(isset($_GET['banned'])){
-        $query = "SELECT * FROM `users` WHERE `users`.`role` = 1;";
+        $query = "SELECT * FROM `users` WHERE `users`.`role` = 1 AND `users`.`ban_date` != '0000-00-00';";
       }else{
-        $query = "SELECT * FROM `users` WHERE `users`.`role` = 2;";  // left joinuję tabelę z nazwami kategorii aby je wyświetlić
+        $query = "SELECT * FROM `users` WHERE `users`.`ban_date` = '0000-00-00' AND `users`.`id` != 1;";  // left joinuję tabelę z nazwami kategorii aby je wyświetlić
       }
       if($result = mysqli_query($link,$query)){
         while ($row = mysqli_fetch_assoc($result)) { ?>
@@ -29,7 +29,11 @@
             <td><?php echo $row['last_name']; ?></td>
             <td><?php echo $row['email']; ?></td>
             <td><img src="../img/uploads/<?php echo $row['thumbnail']; ?>" alt="" class="user_thumbnail img-responsive"></td>
-            <td><?php echo $row['role']; ?></td>
+            <?php if(isset($_GET['banned'])){  ?>
+            <td><?php echo "Zablokowany" ?></td>
+            <?php }else{ ?>
+            <td><?php echo ($row['role'] === '2') ? 'Aktywny' : 'Nieaktywowany' ?></td>
+            <?php } ?>
             <td>
               <a class="btn-link delete" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?dlt='.$row['id']; ?>">Usuń</a>
               <?php

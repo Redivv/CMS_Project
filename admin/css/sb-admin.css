@@ -235,6 +235,10 @@ ul.alert-dropdown {
   width: 100%;
   max-height: 80px;
 }
+.post-edit_thumbnail{
+  width: 100%;
+  max-height: 200px;
+}
 .user_thumbnail{
   width: 64px;
   height: 64px;

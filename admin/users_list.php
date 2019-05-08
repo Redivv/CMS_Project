@@ -8,10 +8,27 @@
 
     if((isset($_GET['dlt'])) && (!empty($_GET['dlt']))){
       $dlt_id = intval($_GET['dlt']);
-      $query = "DELETE FROM `users` WHERE `users`.`id` = $dlt_id";
 
+      // Pobranie nazwy usuwanego użytkownika (dla tabeli postów)
+      $query = "SELECT `users`.`username` FROM `users` WHERE `users`.`id` = {$dlt_id};";
+      $result = mysqli_query($link,$query);
+      $row = mysqli_fetch_assoc($result);
+      $dlt_name = $row['username'];
+
+      // Usuwanie użytkownika
+      $query = "DELETE FROM `users` WHERE `users`.`id` = {$dlt_id} AND `users`.`username` = '$dlt_name'";
       if(mysqli_query($link,$query)){
+
+        // Usuwanie komentarzy
+        $query = "DELETE FROM `comments` WHERE `comments`.`author_id` = {$dlt_id};";
+        mysqli_query($link,$query);
+
+        // Usuwanie Postów
+        $query = "DELETE FROM `posts` WHERE `posts`.`author` = '$dlt_name';";
+        mysqli_query($link,$query);
+
         $user_status = "Usunięto użytkownika";
+
       }else{
         $user_status = "Nie ma takiego użytkownika";
       }
@@ -21,7 +38,7 @@
       $user_id = ($_GET['ban'] === '1') ? 'Błąd' : $_GET['ban'];
       $ban_date = date('Y-m-d');
       $ban_date = date('Y-m-d', strtotime($ban_date.' + 1 days'));
-      $query = "UPDATE `users` SET `users`.`role` = 1, `users`.`ban_date` = $ban_date WHERE `users`.`id` = {$user_id};";
+      $query = "UPDATE `users` SET `users`.`role` = 1, `users`.`ban_date` = '$ban_date' WHERE `users`.`id` = {$user_id};";
       if(mysqli_query($link,$query)){
         $user_status = "Zablokowano użytkownika na 1 dzień";
       }else{
@@ -73,9 +90,6 @@
         </div>
         <!-- /.page-wrapper -->
 
-        <!-- Footer -->
-        <?php include "includes/footer.php"; ?>
-        <!-- /.Footer -->
     </div>
     <!-- /.wrapper -->
     <!-- jQuery -->
@@ -85,9 +99,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom Js -->
-    <script src="js/admin.js">
-
-    </script>
+    <script src="js/admin.js"></script>
 
 </body>
 

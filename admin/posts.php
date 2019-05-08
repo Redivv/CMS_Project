@@ -6,9 +6,19 @@
 
   if((isset($_GET['dlt'])) && (!empty($_GET['dlt']))){
     $dlt_id = intval($_GET['dlt']);
-    $query = "DELETE FROM `posts` WHERE `posts`.`id` = $dlt_id";
 
+    // Pobieranie nazwy miniaturki usuwanego posta
+    $query = "SELECT `posts`.`img` FROM `posts` WHERE `posts`.`id` = {$dlt_id};";
+    $result = mysqli_query($link,$query);
+    $row = mysqli_fetch_assoc($result);
+    $dlt_img = $row['img'];
+
+    // Usuwanie Posta
+    $query = "DELETE FROM `posts` WHERE `posts`.`id` = {$dlt_id}";
     if(mysqli_query($link,$query)){
+      if (($dlt_img != "post_normal_thumb.jpg") && (mysqli_affected_rows($link) === 1) ) {
+        unlink('../img/uploads/'.$dlt_img);
+      }
       $post_status = "Usunięto post";
     }else{
       $post_status = "Nie ma takiego numeru posta";
@@ -48,12 +58,9 @@
         </div>
         <!-- /.page-wrapper -->
 
-        <!-- Footer -->
-        <?php include "includes/footer.php"; ?>
-        <!-- /.Footer -->
     </div>
     <!-- /.wrapper -->
-    
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -61,9 +68,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom Js -->
-    <script src="js/admin.js">
-
-    </script>
+    <script src="js/admin.js"></script>
 
 </body>
 
