@@ -47,7 +47,45 @@
 
     <!-- Custom Js -->
     <script src="js/admin.js"></script>
-    <script src="js/google_charts/dashboard_chart.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['bar']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = google.visualization.arrayToDataTable([
+              ['Kategoria', 'Posty' ],
+              <?php
+                foreach ($cat_post as $k => $v) {
+                  echo "['$k', $v],";
+                }
+              ?>
+            ]);
+
+        // Set chart options
+        var options = {
+              chart: {
+                title: "<?php echo ($role === 3) ? 'Popularność Kategorii' : 'Kategorie Twoich Postów' ?>",
+                subtitle: "<?php echo ($role === 3) ? 'Które Działy są Najbardziej Ruchliwe' : 'Ile i gdzie się najbardziej udzielałeś' ?>",
+              },
+            };
+
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.charts.Bar(document.getElementById('chart_div'));
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+
+      }
+
+    </script>
 
 </body>
 

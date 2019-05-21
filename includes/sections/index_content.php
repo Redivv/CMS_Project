@@ -22,7 +22,7 @@
         </p>
         <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $row['date']; ?></p>
         <hr>
-        <img class="img-responsive post_thumbnail" src="img/uploads/<?php echo $row['img']; ?>" alt="">
+        <a href="post.php?id=<?php echo $row['id']; ?>"><img class="img-responsive post_thumbnail" src="img/uploads/<?php echo $row['img']; ?>" alt=""></a>
         <hr>
         <p><?php if(strlen($row['content']) > 250){echo substr($row['content'],0,250)."...";}else{echo $row['content']."...";} ?></p>
         <a class="btn btn-primary" href="post.php?id=<?php echo $row['id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>

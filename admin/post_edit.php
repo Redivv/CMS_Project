@@ -39,7 +39,7 @@
       $new_post[2] = (!empty($_POST['category'])) ? intval(mysqli_real_escape_string($link,$_POST['category'])) : 0;
       $new_post[3] = (!empty($_POST['status'])) ? mysqli_real_escape_string($link,$_POST['status']) : 'ukryty';
       $new_post[4] = ($_FILES['thumbnail']['size'] > 0) ? mysqli_real_escape_string($link,upload_image($_FILES['thumbnail'])) : 'post_normal_thumb.jpg';
-      $new_post[5] = (!empty($_POST['tags'])) ? mysqli_real_escape_string($link,$_POST['tags']) : 'tagi';
+      $new_post[5] = (!empty($_POST['tags'])) ? strtolower(mysqli_real_escape_string($link,$_POST['tags'])) : 'tagi';
       $new_post[6] = (!empty($_POST['content'])) ? mysqli_real_escape_string($link,$_POST['content']) : 'treść';
       $new_post[7] = date('Y-m-d');
 
@@ -48,7 +48,7 @@
         if(!empty($new_post[4])){$query .= "`img` = '$new_post[4]', ";}
         $query .= "`content` = '$new_post[6]', `tags` = '$new_post[5]', `status` = '$new_post[3]' WHERE `posts`.`id` = $post_id;";
       }else{
-        $query = "INSERT INTO `posts` VALUES (NULL, $new_post[2], '$new_post[0]', '$new_post[1]', '$new_post[7]', '$new_post[4]', '$new_post[6]', '$new_post[5]', 0, '$new_post[3]')";
+        $query = "INSERT INTO `posts` VALUES (NULL, $new_post[2], '$new_post[0]', '$new_post[1]', '$new_post[7]', '$new_post[4]', '$new_post[6]', '$new_post[5]', 0, '$new_post[3]', 0)";
       }
       if(mysqli_query($link, $query)){
         $post_status = "Dane zapisano";

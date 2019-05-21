@@ -12,19 +12,20 @@
 
     // Create the data table.
     var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses', 'Profit'],
-          ['2014', 1000, 400, 200],
-          ['2015', 1170, 460, 250],
-          ['2016', 660, 1120, 300],
-          ['2017', 1030, 540, 350]
+          ['Kategoria', 'Posty'],
+          ['Boostrap', 1],
+          ['React', 11],
+          ['PHP', 6],
+          ['Python', 5],
+          ['C++', 4]
         ]);
 
 
     // Set chart options
     var options = {
           chart: {
-            title: 'Company Performance',
-            subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+            title: 'Kategorie Twoich Postów',
+            subtitle: 'Ile i gdzie się najbardziej udzielałeś',
           }
         };
 
@@ -32,5 +33,5 @@
     // Instantiate and draw our chart, passing in some options.
     var chart = new google.charts.Bar(document.getElementById('chart_div'));
     chart.draw(data, google.charts.Bar.convertOptions(options));
-    
+
   }

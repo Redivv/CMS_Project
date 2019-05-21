@@ -10,6 +10,8 @@
         $date = $result['date'];
         $img = 'img/uploads/'.$result['img'];
         $content = $result['content'];
+        $query = "UPDATE `posts` SET `posts`.`viewed_count` = `posts`.`viewed_count` + 1 WHERE `posts`.`id` = {$post_id};";
+        mysqli_query($link,$query);
       }else{
         $post_status = "Taki post nie istnieje";
       }

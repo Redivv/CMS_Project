@@ -13,6 +13,7 @@
       <th scope="col">Tagi</th>
       <th scope="col">Komentarze</th>
       <th scope="col">Data</th>
+      <th scope="col">Liczba Wyświetleń</th>
       <th scope="col">Opcje</th>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
             <td><?php echo $row['tags']; ?></td>
             <td><?php echo $row['comment_count']; ?></td>
             <td><?php echo $row['date']; ?></td>
+            <td><?php echo $row['viewed_count']; ?></td>
             <td>
               <a href = "post_edit.php?id=<?php echo $row['id']; ?>" class="btn-link">Edytuj</a>
               <a class="btn-link delete" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?dlt='.$row['id']; ?>">Usuń</a>
