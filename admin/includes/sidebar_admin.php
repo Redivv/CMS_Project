@@ -51,6 +51,9 @@
           <li>
               <a href="profile.php"><i class="fa fa-fw fa-edit"></i> Profil</a>
           </li>
+          <li>
+            <a href="../index.php" style="color:red;"><i class="fa fa-fw fa-arrow-left"></i> Do strony głównej</a>
+          </li>
       </ul>
   </div>
 <!-- /.Sidebar Menu Items -->

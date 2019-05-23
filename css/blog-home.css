@@ -5,7 +5,7 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 120px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 footer {
@@ -18,8 +18,8 @@ footer {
 }
 
 #user_avatar{
-  height: 20px;
-  width: 20px;
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
 }
 
@@ -46,4 +46,23 @@ footer {
   color: rgb(68, 124, 0);
   font-weight: bold;
   font-style: italic;
+}
+.count{
+  position: absolute;
+  bottom: 22%;
+  left: 10%;
+  font-size: 60%;
+}
+.count#dashboard_count{
+  bottom: 10%;
+  left: 10%;
+  font-size: 50%;
+}
+@media (min-width: 992px) {
+  .hide-desktop{
+    display:none
+  }
+  body{
+    padding-top: 70px;
+  }
 }

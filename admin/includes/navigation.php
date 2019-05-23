@@ -114,34 +114,31 @@
           <!-- /.Item -->
 
           <!-- Item -->
-          <li>
-            <a style="color:red;" href="../index.php">Do strony głównej</a>
-          </li>
-          <!-- /.Item -->
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a style="text-align:center;" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span><img id="user_avatar" src="../img/uploads/<?php echo $_SESSION['thumb']; ?>"><?php echo ' '.$_SESSION['username']; ?><b class="caret"></b></a>
 
-          <!-- Item -->
-          <li class="dropdown">
-              <a style="text-align:center;" href="#" class="dropdown-toggle" data-toggle="dropdown"><img id="user_avatar" src="../img/uploads/<?php echo $_SESSION['thumb']; ?>"><?php echo ' '.$_SESSION['username']; ?><b class="caret"></b></a>
+                <!-- User -->
+                <ul class="dropdown-menu">
+                    <li style="position:relative;">
+                      <span id="dashboard_count" class="label label-pill label-danger count" style="border-radius:10px;"></span>
+                      <a href="dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                      <a href="profile.php"><i class="fa fa-fw fa-edit"></i> Profil</a>
+                    </li>
+                    <li>
+                      <a href="post_edit.php"><i class="fa fa-fw fa-plus"></i> Dodaj Post</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                      <a href="logout.php"><i class="fa fa-fw fa-power-off"></i>Wyloguj Się</a>
+                    </li>
+                </ul>
+                <!-- /.User -->
 
-              <!-- User -->
-              <ul class="dropdown-menu">
-                  <li>
-                    <a href="dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
-                  </li>
-                  <li>
-                    <a href="profile.php"><i class="fa fa-fw fa-edit"></i> Profil</a>
-                  </li>
-                  <li>
-                    <a href="post_edit.php"><i class="fa fa-fw fa-plus"></i> Dodaj Post</a>
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="logout.php"><i class="fa fa-fw fa-power-off"></i>Wyloguj Się</a>
-                  </li>
-              </ul>
-              <!-- /.User -->
-
-          </li>
+            </li>
+          </ul>
           <!-- /.Item -->
 
       </ul>

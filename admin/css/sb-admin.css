@@ -256,3 +256,14 @@ ul.alert-dropdown {
 .profile-user_thumbnail{
   margin: 10% 0;
 }
+.count{
+  position: absolute;
+  bottom: 22%;
+  left: 10%;
+  font-size: 60%;
+}
+.count#dashboard_count{
+  bottom: 20%;
+  left: 10%;
+  font-size: 50%;
+}

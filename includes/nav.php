@@ -26,7 +26,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <?php
-               $query = "SELECT * FROM categories";
+               $query = "SELECT * FROM categories LIMIT 5";
                $result_categories = mysqli_query($link,$query);
                while ($row = mysqli_fetch_assoc($result_categories)) {
                  $cat_title = $row['title'];
@@ -50,11 +50,12 @@
           session_start();
           if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){  ?>
             <li class="dropdown">
-                <a style="text-align:center;" href="#" class="dropdown-toggle" data-toggle="dropdown"><img id="user_avatar" src="img/uploads/<?php echo $_SESSION['thumb']; ?>"><?php echo ' '.$_SESSION['username']; ?><b class="caret"></b></a>
+                <a style="text-align:center;" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span><img id="user_avatar" src="img/uploads/<?php echo $_SESSION['thumb']; ?>"><?php echo ' '.$_SESSION['username']; ?><b class="caret"></b></a>
 
                 <!-- User -->
                 <ul class="dropdown-menu">
-                    <li>
+                    <li style="position:relative;">
+                      <span id="dashboard_count" class="label label-pill label-danger count" style="border-radius:10px;"></span>
                       <a href="admin/dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
@@ -75,6 +76,8 @@
         }else{ ?>
           <li><a href="admin">Zaloguj Się</a></li>
           <?php } ?>
+      </ul>
+      <!-- /.Item -->
     </div>
   </div>
 </nav>

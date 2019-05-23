@@ -2,7 +2,7 @@
 <div class="row">
 
   <!-- Blog Entries Column -->
-  <div class="col-md-8">
+  <div class="col-md-8 post_container">
 
       <?php include 'includes/header.php'; create_header('Tytuł', 'podtytuł'); ?>
 
@@ -33,6 +33,8 @@
 
   </div>
   <!-- /.Blog Entries Column -->
+
+  <hr class="hide-desktop">
 
   <!-- Blog Sidebar Widgets Column -->
   <?php include "includes/sidebar.php" ?>
