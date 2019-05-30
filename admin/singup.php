@@ -43,7 +43,7 @@
                   $email_err = "Ten adres email jest już powiązany z kontem";      // jeśli znaleziono username - przypisać bład
               }else{
                 if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-                  $email = trim($_POST["email"]);      // w przeciwnym razie mamy gotowy username
+                  $email = trim($_POST["email"]);      // w przeciwnym razie mamy gotowy email
                 }else {
                   $email_err = "Niepoprawny adres email";
                 }
@@ -86,7 +86,7 @@
               $new_id = mysqli_insert_id($link);
               $subject = "Account Activation";
               $message = 'Witaj na Gliniane Dzbany Blog! Link Aktywacyjny : <a href="http://port.loc/admin/index.php?id='.$new_id.'&code='.$ready_hash.'>Aktywuj Konto</a>"';
-              send_verification_mail($ready_email,$subject,$message);
+              send_verification_mail('localmail@localhost',$subject,$message);
               $confirm_password_err = "Na podany adres email został wysłany link aktywacyjny";
             }else{
               echo "Wystąpił Błąd";     // a jak nie to nie
@@ -141,7 +141,7 @@
       <div class="form-group">
         <label for="">Powtórz Hasło*</label>
         <input required type="password" class="form-control" name="confirm_password" value="<?php echo $confirm_password; ?>">
-        <div class="error-block"><?php echo $confirm_password_err;?></div>
+        <div class="<?php echo ($confirm_password_err === 'Na podany adres email został wysłany link aktywacyjny') ? 'sent' : 'error-block'; ?>"><?php echo $confirm_password_err;?></div>
       </div>
       <button class="btn btn-block btn-primary" type="submit" name="send_form">Zarejestruj Się</button>
     </form>

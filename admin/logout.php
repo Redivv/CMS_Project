@@ -5,6 +5,6 @@ $_SESSION = array();    // czyścimy zawartość sesji
 
 session_destroy();      // niszczymy utworzoną sesję
 
-header("location: index.php");    // wypierdalamy na login
+header("location: index.php");    // wywalamy na login
 exit;
 ?>

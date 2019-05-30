@@ -43,12 +43,13 @@
 
     function send_verification_mail(string $target, string $title, string $mail) : bool{
 
-        $to      = $target;
-        $subject = $title;
-        $message = $mail;
-        $headers = 'From: Local Blog' . "\r\n" .
-            'Reply-To: j.rajca45@gmail.com' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
+      $to      = $target;
+      $subject = $title;
+      $message = $mail;
+      $headers = 'From: webmaster@example.com' . "\r\n" .
+        'Reply-To: webmaster@example.com' . "\r\n" .
+        'Content-type: text/html; charset=utf-8' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
 
         if(mail($to, $subject, $message, $headers)){
           return true;

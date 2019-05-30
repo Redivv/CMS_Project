@@ -52,7 +52,7 @@
       <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
         <div class="form-group">
           <label for="upload-email">E-mail</label>
-          <input id="upload-email" value="<?php echo $data['email']; ?>" class="form-control" type="text">
+          <input id="upload-email" value="<?php echo $data['email']; ?>" name="new_email" class="form-control" type="text">
         </div>
         <button class="btn btn-primary" type="submit" value="mailInfo" name="send_form">Zmień Dane</button>
       </form>
