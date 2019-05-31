@@ -1,8 +1,18 @@
 <!-- Powiadomienia -->
-  <div class="notifications well">
-    Kiedyś tu będą Powiadomienia ale jeszcze nie mam pomysłu
+  <div class="dropdown notifications">
+    <button class="btn btn-block btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Powiadomienia
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu notifications_list" style="width:100%" aria-labelledby="dropdownMenu1">
+      <li><a href="#"><div class="notifications_header">Ban</div><small class="notifications_desc">lel</small></a></li>
+      <li><a href="#"><div class="notifications_header">Komentarz</div><small class="notifications_desc">lel</small></a></li>
+      <li><a href="#"><div class="notifications_header">Odpowiedź</div><small class="notifications_desc">lel</small></a></li>
+    </ul>
   </div>
 <!-- /.Powiadomienia -->
+
+<hr>
 
 <?php
 

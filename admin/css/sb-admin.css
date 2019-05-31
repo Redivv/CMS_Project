@@ -49,7 +49,6 @@ body {
 }
 
 .top-nav>li {
-    display: inline-block;
     float: left;
 }
 
@@ -266,4 +265,10 @@ ul.alert-dropdown {
   bottom: 20%;
   left: 10%;
   font-size: 50%;
+}
+.notifications_header{
+    font-weight: bold;
+}
+.notifications_desc{
+    color:#777;
 }
