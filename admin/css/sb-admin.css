@@ -266,6 +266,10 @@ ul.alert-dropdown {
   left: 10%;
   font-size: 50%;
 }
+.notifications_counter{
+    font-weight: bold;
+    color:red;
+}
 .notifications_header{
     font-weight: bold;
 }

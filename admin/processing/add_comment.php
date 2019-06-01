@@ -30,6 +30,12 @@
             </div>
           </div>
           <!--/.Nested Comment -->';
+          $type = ($comment === 0) ? 2 : 3;
+          $not_link = '../post.php?id='.$post_id;
+          $receipients = array('First' => $post_id, 'Second' => $comment);
+          $receipients = mysqli_real_escape_string($link,serialize($receipients));
+          $query = "INSERT INTO notifications VALUES (NULL,{$type},'$not_link','$receipients')";
+          mysqli_query($link,$query);
         }else{
           echo "Wystąpił błąd ".mysqli_error($link);
         }

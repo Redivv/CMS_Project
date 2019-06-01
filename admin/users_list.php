@@ -40,6 +40,10 @@
       $ban_date = date('Y-m-d', strtotime($ban_date.' + 1 days'));
       $query = "UPDATE `users` SET `users`.`role` = 1, `users`.`ban_date` = '$ban_date' WHERE `users`.`id` = {$user_id};";
       if(mysqli_query($link,$query)){
+        $receipients = array('First' => $user_id);
+        $receipients = mysqli_real_escape_string($link,serialize($receipients));
+        $query = "INSERT INTO notifications VALUES (NULL,1,'users.php','$receipients')";
+        mysqli_query($link,$query);
         $user_status = "Zablokowano użytkownika na 1 dzień";
       }else{
         $user_status = "Nie ma takiego użytkownika";

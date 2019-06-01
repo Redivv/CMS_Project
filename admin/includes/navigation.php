@@ -80,29 +80,22 @@
           </li>
           <!-- /.Item -->
 
-          <!-- Item HIDDEN -->
-          <li class="dropdown hide">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-
+          <!-- Item -->
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bell"></i> <b class="caret"></b>
+              <span class="label label-pill label-danger count" style="border-radius:10px;">2</span>
+              </a>
               <!-- Alerts -->
               <ul class="dropdown-menu alert-dropdown">
                   <li>
-                      <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                      <a href="#"><span class="label label-danger">Blokada</span><p>Zostałeś Zablokowany</p></a>
                   </li>
                   <li>
-                      <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                      <a href="#"><span class="label label-success">Komentarz</span><p>Nowy Komentarz</p></a>
                   </li>
                   <li>
-                      <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                  </li>
-                  <li>
-                      <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                  </li>
-                  <li>
-                      <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                  </li>
-                  <li>
-                      <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                      <a href="#"><span class="label label-success">Komentarz</span><p>Nowa Odpowiedź</p></a>
                   </li>
                   <li class="divider"></li>
                   <li>
@@ -116,12 +109,10 @@
           <!-- Item -->
           <ul class="nav navbar-nav">
             <li class="dropdown">
-                <a style="text-align:center;" href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="label label-pill label-danger count" style="border-radius:10px;"></span><img id="user_avatar" src="../img/uploads/<?php echo $_SESSION['thumb']; ?>"><?php echo ' '.$_SESSION['username']; ?><b class="caret"></b></a>
-
+                <a style="text-align:center;" href="#" class="dropdown-toggle" data-toggle="dropdown"><img id="user_avatar" src="../img/uploads/<?php echo $_SESSION['thumb']; ?>"><?php echo ' '.$_SESSION['username']; ?><b class="caret"></b></a>
                 <!-- User -->
                 <ul class="dropdown-menu">
                     <li style="position:relative;">
-                      <span id="dashboard_count" class="label label-pill label-danger count" style="border-radius:10px;"></span>
                       <a href="dashboard.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>

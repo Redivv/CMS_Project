@@ -1,8 +1,8 @@
 <!-- Powiadomienia -->
   <div class="dropdown notifications">
-    <button class="btn btn-block btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <button class="btn btn-block btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
       Powiadomienia
-      <span class="caret"></span>
+      <i class="fas fa-exclamation"></i>
     </button>
     <ul class="dropdown-menu notifications_list" style="width:100%" aria-labelledby="dropdownMenu1">
       <li><a href="#"><div class="notifications_header">Ban</div><small class="notifications_desc">lel</small></a></li>
