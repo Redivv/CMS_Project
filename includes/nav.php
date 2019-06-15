@@ -18,7 +18,7 @@
           <!-- /.Przycisk do rozwijania nawigacji -->
 
             <!-- Link do strony / logo -->
-            <a class="navbar-brand" href="index.php">Gliniane Dzbany - Blog</a>
+            <a class="navbar-brand" href="index.php">Web Deweloper - Blog</a>
 
         </div>
 

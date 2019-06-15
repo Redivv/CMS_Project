@@ -59,8 +59,8 @@
         if (mysqli_query($link,$query)) {
           $email = $_SESSION['email'];
           $msg = "Naciśnij link aby potwierdzić zmianę hasła : <a href='http://port.loc/admin/pass.php?id=".$_SESSION['id']."&hash=".$hash."'>Potwierdź Zmianę Hasła</a>";
-          $title = "Gliniane Dzbany Blog - Zmiana Hasła";
-          if(send_verification_mail('localmail@localhost',$title,$msg)){
+          $title = "Web Deweloper Blog - Zmiana Hasła";
+          if(send_verification_mail($email,$title,$msg)){
             $profile_error = 'Na adres email został wysłany mail z potwierdzeniem zmiany hasła';
           }else{
             $profile_error = "Wystąpił Bład. Proszę spróbować później";
@@ -99,8 +99,8 @@
                   $query = "UPDATE `users` SET `users`.`hash` = '$hash', `users`.`last_email` = '$email' WHERE `users`.`id` = {$user_id};";
                   if (mysqli_query($link,$query)) {
                     $msg = 'Naciśnij link aby potwierdzić zmianę adresu email : <a href="http://port.loc/admin/mail.php?id='.$_SESSION['id'].'&hash='.$hash.'">Link Potwiedzający </a>';
-                    $title = "Gliniane Dzbany Blog - Zmiana Hasła";
-                    if(send_verification_mail('localmail@localhost',$title,$msg)){
+                    $title = "Web Deweloper Blog - Zmiana Hasła";
+                    if(send_verification_mail($email,$title,$msg)){
                       $profile_error = 'Na podany nowy adres email został wysłany mail z potwierdzeniem zmiany adresu email';
                     }else{
                       $profile_error = "Wystąpił Bład. Proszę spróbować później";

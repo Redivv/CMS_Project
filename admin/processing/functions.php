@@ -46,8 +46,8 @@
       $to      = $target;
       $subject = $title;
       $message = $mail;
-      $headers = 'From: webmaster@example.com' . "\r\n" .
-        'Reply-To: webmaster@example.com' . "\r\n" .
+      $headers = 'From: info@wipaka.com.pl' . "\r\n" .
+        'Reply-To: info@wipaka.com.pl' . "\r\n" .
         'Content-type: text/html; charset=utf-8' . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
 
