@@ -20,7 +20,7 @@
             <div class="container-fluid">
 
                 <!-- Header -->
-                <?php include 'includes/header.php'; create_header('Dashboard', 'podtytuł'); ?>
+                <?php include 'includes/header.php'; create_header('Dashboard', 'Ekran Główny'); ?>
                 <!-- /.Header -->
 
                 <!-- Content -->

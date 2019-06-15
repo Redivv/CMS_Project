@@ -4,7 +4,7 @@
   <!-- Blog Entries Column -->
   <div class="col-md-8 post_container">
 
-      <?php include 'includes/header.php'; create_header('Tytuł', 'podtytuł'); ?>
+      <?php include 'includes/header.php'; create_header('Witaj na Moim Blogu!', ''); ?>
 
       <article id="blog_posts">
 

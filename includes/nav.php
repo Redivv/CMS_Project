@@ -51,7 +51,7 @@
         <li style="margin-top:2.5%" class="dropdown" id="notification_dropdown">
             <a href="#" style="text-align:center" class="dropdown-toggle" id="notification_dropdown_link" data-toggle="dropdown">
             <i class="fa fa-bell"></i> <b class="caret"></b>
-            <span class="label label-pill label-danger count" style="border-radius:10px;">1</span>
+            <span class="label label-pill label-danger count" style="border-radius:10px;"></span>
             </a>
             <!-- Alerts -->
             <ul id="notification_dropdown_menu" class="dropdown-menu alert-dropdown">

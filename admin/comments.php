@@ -68,7 +68,7 @@
             <div class="container-fluid">
 
                 <!-- Header -->
-                <?php include 'includes/header.php'; create_header('Komentarze', 'podtytuł'); ?>
+                <?php include 'includes/header.php'; create_header('Komentarze', 'Co piszą użytkownicy'); ?>
                 <!-- /.Header -->
 
                 <!-- Content -->
