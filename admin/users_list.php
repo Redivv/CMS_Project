@@ -40,9 +40,7 @@
       $ban_date = date('Y-m-d', strtotime($ban_date.' + 1 days'));
       $query = "UPDATE `users` SET `users`.`role` = 1, `users`.`ban_date` = '$ban_date' WHERE `users`.`id` = {$user_id};";
       if(mysqli_query($link,$query)){
-        $receipients = array('First' => $user_id);
-        $receipients = mysqli_real_escape_string($link,serialize($receipients));
-        $query = "INSERT INTO notifications VALUES (NULL,1,'users.php','$receipients')";
+        $query = "INSERT INTO notifications VALUES ({$user_id},1,NULL,0)";
         mysqli_query($link,$query);
         $user_status = "Zablokowano użytkownika na 1 dzień";
       }else{
@@ -52,9 +50,13 @@
 
     if((isset($_GET['reban'])) && (!empty($_GET['reban']))){
       $user_id = $_GET['reban'];
-      $query = "UPDATE `users` SET `users`.`role` = 2, `users`.`ban_date` = '' WHERE `users`.`id` = {$user_id};";
+      $query = "UPDATE `users` SET `users`.`role` = 2, `users`.`ban_date` = '0000-00-00' WHERE `users`.`id` = {$user_id};";
       if(mysqli_query($link,$query)){
         $user_status = "Odblokowano Użytkownika";
+        $query = "DELETE FROM notifications WHERE type = 1 AND receipient = {$user_id}";
+        mysqli_query($link,$query);
+        $query = "INSERT INTO notifications VALUES ({$user_id},4,NULL,0)";
+        mysqli_query($link,$query);
       }else{
         $user_status = "Nie ma takiego użytkownika";
       }
@@ -104,6 +106,7 @@
 
     <!-- Custom Js -->
     <script src="js/admin.js"></script>
+    <script src="js/notifications.js"></script>
 
 </body>
 

@@ -1,5 +1,6 @@
 $(document).ready(function(){
   main();
+  check_ban();
 });
 
 function main(){
@@ -29,4 +30,23 @@ function main(){
       event.preventDefault();
     }
   });
+
+  $('a.reban').on('click',function(event){
+    var you_sure = confirm("Czy na pewno chcesz odblokować użytkownika?");
+    if(you_sure != true){
+      event.preventDefault();
+    }
+  });
+}
+
+function check_ban(){
+  $.ajax({     // request asks to check database for new comments and expects data to show in json
+    url:"processing/fetch_ban.php",
+    method:"POST",
+    data:{check:'ban'}
+   });
+
+   setInterval(function(){
+    check_ban();
+   }, 50000);
 }

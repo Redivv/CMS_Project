@@ -38,7 +38,7 @@
               <a class="btn-link delete" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?dlt='.$row['id']; ?>">Usuń</a>
               <?php
               if(isset($_GET['banned'])){ ?>
-              <a class="btn-link ban" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?reban='.$row['id']; ?>">Odblokuj</a>
+              <a class="btn-link reban" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?reban='.$row['id']; ?>">Odblokuj</a>
               <?php }else{ ?>
               <a class="btn-link ban" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]).'?ban='.$row['id']; ?>">Zablokuj</a>
               <?php } ?>

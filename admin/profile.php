@@ -1,7 +1,6 @@
 <?php include 'includes/db_conn.php'; ?>
 <?php include 'processing/verification.php'; verification(1); ?>
 <?php
-  session_start();
   $profile_error = '';
   $user_id = $_SESSION['id'];
 
@@ -177,6 +176,7 @@
 
     <!-- Custom Js -->
     <script src="js/admin.js"></script>
+    <script src="js/notifications.js"></script>
 
 </body>
 

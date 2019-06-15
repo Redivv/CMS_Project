@@ -4,6 +4,7 @@
   if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if((!empty($_POST['content'])) && (!empty($_POST['post_id']))){
       $author = $_SESSION['id'];
+      $user = $_SESSION['username'];
       $content = mysqli_real_escape_string($link,$_POST['content']);
       $post_id = mysqli_real_escape_string($link,$_POST['post_id']);
       $date = mysqli_real_escape_string($link,date('Y-m-d'));
@@ -23,19 +24,24 @@
                   <img class="media-object comment_avatar" src="'.$_POST['img'].'" alt="">
               </a>
               <div class="media-body">
-                  <h4 class="media-heading">Jakob2
+                  <h4 class="media-heading">'.$user.'
                       <small>'.$date.'</small>
                   </h4>
                   '.$content.'
             </div>
           </div>
           <!--/.Nested Comment -->';
-          $type = ($comment === 0) ? 2 : 3;
-          $not_link = '../post.php?id='.$post_id;
-          $receipients = array('First' => $post_id, 'Second' => $comment);
-          $receipients = mysqli_real_escape_string($link,serialize($receipients));
-          $query = "INSERT INTO notifications VALUES (NULL,{$type},'$not_link','$receipients')";
+          $not_link = '../post.php?id='.$post_id.'#posted_comments';
+          $query = "INSERT INTO notifications VALUES ({$post_id},2,'$not_link',0)";
           mysqli_query($link,$query);
+          if($comment != 0){
+            $query = "SELECT author_id FROM comments WHERE id = {$comment}";
+            $result = mysqli_query($link,$query);
+            $row = mysqli_fetch_assoc($result);
+            $response_id = $row['author_id'];
+            $query = "INSERT INTO notifications VALUES ({$response_id},3,'$not_link',0)";
+            mysqli_query($link,$query);
+          }
         }else{
           echo "Wystąpił błąd ".mysqli_error($link);
         }

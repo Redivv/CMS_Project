@@ -47,6 +47,7 @@
 
     <!-- Custom Js -->
     <script src="js/admin.js"></script>
+    <script src="js/notifications.js"></script>
     <script type="text/javascript">
 
       // Load the Visualization API and the corechart package.

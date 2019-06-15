@@ -5,7 +5,7 @@
  */
 
 body {
-    padding-top: 120px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 140px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 footer {
@@ -47,16 +47,11 @@ footer {
   font-weight: bold;
   font-style: italic;
 }
-.count{
+.count {
   position: absolute;
   bottom: 22%;
-  left: 10%;
-  font-size: 60%;
-}
-.count#dashboard_count{
-  bottom: 10%;
-  left: 10%;
-  font-size: 50%;
+  left: 48%;
+  font-size: 48%;
 }
 @media (min-width: 992px) {
   .hide-desktop{
@@ -64,5 +59,11 @@ footer {
   }
   body{
     padding-top: 70px;
+  }
+  .count{
+    position: absolute;
+    bottom: 22%;
+    left: 10%;
+    font-size: 60%;
   }
 }

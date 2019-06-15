@@ -69,6 +69,7 @@
 
     <!-- Custom Js -->
     <script src="js/admin.js"></script>
+    <script src="js/notifications.js"></script>
 
 </body>
 

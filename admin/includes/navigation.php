@@ -14,100 +14,28 @@
           <a class="navbar-brand" href="dashboard.php">Panel Użytkownika</a>
       </div>
 
-      <!-- Top Menu Items -->
-      <ul class="nav navbar-right top-nav">
+      <div class="col-lg-2 col-lg-offset-8 col-md-offset-9 col-sm-offset-8 right">
+      
+      <!-- Item -->
+      <ul class="nav navbar-nav">
 
-          <!-- Item HIDDEN -->
-          <li class="dropdown hide">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-
-              <!-- Messages -->
-              <ul class="dropdown-menu message-dropdown">
-                  <li class="message-preview">
-                      <a href="#">
-                          <div class="media">
-                              <span class="pull-left">
-                                  <img class="media-object" src="http://placehold.it/50x50" alt="">
-                              </span>
-                              <div class="media-body">
-                                  <h5 class="media-heading">
-                                      <strong>John Smith</strong>
-                                  </h5>
-                                  <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                  <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                              </div>
-                          </div>
-                      </a>
-                  </li>
-                  <li class="message-preview">
-                      <a href="#">
-                          <div class="media">
-                              <span class="pull-left">
-                                  <img class="media-object" src="http://placehold.it/50x50" alt="">
-                              </span>
-                              <div class="media-body">
-                                  <h5 class="media-heading">
-                                      <strong>John Smith</strong>
-                                  </h5>
-                                  <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                  <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                              </div>
-                          </div>
-                      </a>
-                  </li>
-                  <li class="message-preview">
-                      <a href="#">
-                          <div class="media">
-                              <span class="pull-left">
-                                  <img class="media-object" src="http://placehold.it/50x50" alt="">
-                              </span>
-                              <div class="media-body">
-                                  <h5 class="media-heading">
-                                      <strong>John Smith</strong>
-                                  </h5>
-                                  <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                  <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                              </div>
-                          </div>
-                      </a>
-                  </li>
-                  <li class="message-footer">
-                      <a href="#">Read All New Messages</a>
-                  </li>
-              </ul>
-              <!-- /.Messages -->
-
-          </li>
-          <!-- /.Item -->
-
-          <!-- Item -->
-          <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell"></i> <b class="caret"></b>
-              <span class="label label-pill label-danger count" style="border-radius:10px;">2</span>
-              </a>
-              <!-- Alerts -->
-              <ul class="dropdown-menu alert-dropdown">
-                  <li>
-                      <a href="#"><span class="label label-danger">Blokada</span><p>Zostałeś Zablokowany</p></a>
-                  </li>
-                  <li>
-                      <a href="#"><span class="label label-success">Komentarz</span><p>Nowy Komentarz</p></a>
-                  </li>
-                  <li>
-                      <a href="#"><span class="label label-success">Komentarz</span><p>Nowa Odpowiedź</p></a>
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                      <a href="#">View All</a>
-                  </li>
-              </ul>
-              <!-- /.Alerts -->
-          </li>
-          <!-- /.Item -->
-
-          <!-- Item -->
-          <ul class="nav navbar-nav">
+        <!-- Item -->
+        <li style="margin-top:2.5%" class="dropdown" id="notification_dropdown">
+            <a href="#" style="text-align:center" class="dropdown-toggle" id="notification_dropdown_link" data-toggle="dropdown">
+            <i class="fa fa-bell"></i> <b class="caret"></b>
+            <span class="label label-pill label-danger count" style="border-radius:10px;"></span>
+            </a>
+            <!-- Alerts -->
+            <ul id="notification_dropdown_menu" class="dropdown-menu alert-dropdown">
+            
+            </ul>
+            <!-- /.Alerts -->
+        </li>
+        <!-- /.Item -->
+        
+        <?php
+          session_start();
+          if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){  ?>
             <li class="dropdown">
                 <a style="text-align:center;" href="#" class="dropdown-toggle" data-toggle="dropdown"><img id="user_avatar" src="../img/uploads/<?php echo $_SESSION['thumb']; ?>"><?php echo ' '.$_SESSION['username']; ?><b class="caret"></b></a>
                 <!-- User -->
@@ -127,13 +55,12 @@
                     </li>
                 </ul>
                 <!-- /.User -->
-
             </li>
-          </ul>
-          <!-- /.Item -->
-
+          <?php
+        }else{ ?>
+          <li><a href="admin">Zaloguj Się</a></li>
+          <?php } ?>
       </ul>
-      <!-- /.Top menu items -->
 
       <!-- Sidebar -->
       <?php switch ($_SESSION['role']) {

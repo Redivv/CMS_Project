@@ -1,6 +1,7 @@
 'use strict';
 $(document).ready(function(){
   main();
+  check_ban();
 })
 
 function main() {
@@ -156,4 +157,16 @@ function transformToAssocArray( prmstr ) {
         params[tmparr[0]] = tmparr[1];
     }
     return params;
+}
+
+function check_ban(){
+  $.ajax({     // request asks to check database for new comments and expects data to show in json
+    url:"../admin/processing/fetch_ban.php",
+    method:"POST",
+    data:{check:'ban'}
+   });
+
+   setInterval(function(){
+    check_ban();
+   }, 50000);
 }

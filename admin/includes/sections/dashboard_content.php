@@ -1,19 +1,3 @@
-<!-- Powiadomienia -->
-  <div class="dropdown notifications">
-    <button class="btn btn-block btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      Powiadomienia
-      <i class="fas fa-exclamation"></i>
-    </button>
-    <ul class="dropdown-menu notifications_list" style="width:100%" aria-labelledby="dropdownMenu1">
-      <li><a href="#"><div class="notifications_header">Ban</div><small class="notifications_desc">lel</small></a></li>
-      <li><a href="#"><div class="notifications_header">Komentarz</div><small class="notifications_desc">lel</small></a></li>
-      <li><a href="#"><div class="notifications_header">Odpowiedź</div><small class="notifications_desc">lel</small></a></li>
-    </ul>
-  </div>
-<!-- /.Powiadomienia -->
-
-<hr>
-
 <?php
 
   $author = $_SESSION['username'];
@@ -70,7 +54,7 @@
 
 <!-- Widgety -->
   <div class="widgets row">
-    <div class="col-lg-3 col-md-6">
+    <div class="<?php echo ($role != 3) ? 'col-lg-6 col-md-12' : 'col-lg-3 col-md-6'; ?>">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <div class="row">
@@ -92,7 +76,7 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
+    <div class="<?php echo ($role != 3) ? 'col-lg-6 col-md-12' : 'col-lg-3 col-md-6'; ?>">
         <div class="panel panel-green">
             <div class="panel-heading">
                 <div class="row">
@@ -114,7 +98,7 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-3 col-md-6 <?php echo ($role != 3) ? 'hide' : ''; ?>">
         <div class="panel panel-yellow">
             <div class="panel-heading">
                 <div class="row">
@@ -123,7 +107,7 @@
                     </div>
                     <div class="col-xs-9 text-right">
                     <div class='huge'><?php echo $users_count-1; ?></div>
-                        <div><?php echo ($role === 3) ? 'Użytkownicy' : 'Nie wiem gurwa'; ?></div>
+                        <div>Użytkownicy</div>
                     </div>
                 </div>
             </div>
@@ -136,7 +120,7 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-md-6">
+    <div class="col-lg-3 col-md-6 <?php echo ($role != 3) ? 'hide' : ''; ?>">
         <div class="panel panel-red">
             <div class="panel-heading">
                 <div class="row">
@@ -145,7 +129,7 @@
                     </div>
                     <div class="col-xs-9 text-right">
                         <div class='huge'><?php echo $cat_count; ?></div>
-                         <div><?php echo ($role === 3) ? 'Kategorie' : 'Nie wiem gurwa'; ?></div>
+                         <div>Kategorie</div>
                     </div>
                 </div>
             </div>
