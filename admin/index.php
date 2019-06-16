@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
   // Walidacja konta
   if(empty(trim($username_err)) && empty(trim($password_err))){
 
-      $query = "SELECT `users`.`id`, `users`.`username`, `users`.`password`,`users`.`role`, `users`.`thumbnail`, `users`.`email` FROM `users` WHERE (`users`.`username` = '$username' OR `users`.`email` = '$username') AND `users`.`role` > 0;";    // przygotowuję zapytanie do wyszukania danych użytkownia po UNIKALNYM username
+      $query = "SELECT `users`.`id`, `users`.`username`, `users`.`password`,`users`.`role`, `users`.`thumbnail`, `users`.`email`, `users`.`ban_date` FROM `users` WHERE `users`.`username` = '$username' OR `users`.`email` = '$username'";    // przygotowuję zapytanie do wyszukania danych użytkownia po UNIKALNYM username
 
       if($result = mysqli_query($link,$query)){
 
@@ -53,14 +53,22 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
                      $role = $row['role'];
                      $img = $row['thumbnail'];
                      $email = $row['email'];
+                     $ban_date = $row['ban_date'];
                      if(password_verify($password, $hashed_password)){    // jako że hash i sól znajdują się w bazie danych to wystarczy funkcją verivy porównać hasło zwykłe z już zahashowanym
-
-                         session_start();    // jeśli hasło się zgadza - zaczynamy nową sesję
-
                          $_SESSION["loggedin"] = true;    // użytkownik jest zalogowany
-                         $_SESSION["id"] = $id;   // id sesji (jak i użytkownika)
+                         $_SESSION["id"] = intVal($id);   // id sesji (jak i użytkownika)
                          $_SESSION["username"] = htmlspecialchars($username);  // zalogowany użytkownik
-                         $_SESSION['role'] = intVal(htmlspecialchars($role));
+                         if(($ban_date != '0000-00-00') && ($ban_date <= date('Y-m-d'))){ // jeśli Twój ban minął, zmień role
+                          $query = "UPDATE users SET role = 2, ban_date = '0000-00-00' WHERE id = {$id}";
+                          mysqli_query($link,$query);
+                          $_SESSION['role'] = 2;
+                          $query = "DELETE FROM notifications WHERE type = 1 AND receipient = {$id}";
+                          mysqli_query($link,$query);
+                          $query = "INSERT INTO notifications VALUES ({$id},4,NULL,0)";
+                          mysqli_query($link,$query);
+                         }else{
+                          $_SESSION['role'] = intVal(htmlspecialchars($role));
+                         }
                          $_SESSION['thumb'] = htmlspecialchars($img);
                          $_SESSION['email'] = htmlspecialchars($email);
 

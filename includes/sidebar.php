@@ -2,7 +2,7 @@
 
     <!-- Blog Search Well -->
     <div class="well">
-      <h4>Blog Search</h4>
+      <h4>Wyszukiwanie po Tagach</h4>
       <form method="post">
         <div class="input-group">
             <input type="text" name="search" value="" class="form-control">
@@ -18,7 +18,7 @@
 
     <!-- Blog Categories Well -->
     <div class="well">
-        <h4>Blog Categories</h4>
+        <h4>Wszystkie Kategorie</h4>
         <div class="row">
             <div class="col-lg-12">
                 <ul class="list-unstyled">

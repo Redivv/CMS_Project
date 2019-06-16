@@ -43,7 +43,13 @@ function check_ban(){
   $.ajax({     // request asks to check database for new comments and expects data to show in json
     url:"processing/fetch_ban.php",
     method:"POST",
-    data:{check:'ban'}
+    data:{check:'ban'},
+    dataType:'json',
+    success:function(data){
+      if(data === 'redirect'){
+        window.location.replace("http://port.loc/admin/logout.php");
+      }
+     }
    });
 
    setInterval(function(){
