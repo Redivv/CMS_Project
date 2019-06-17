@@ -48,7 +48,10 @@
       <ul class="nav navbar-nav">
 
         <!-- Item -->
-        <li style="margin-top:2.5%" class="dropdown" id="notification_dropdown">
+        <?php
+          session_start();
+          if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){  ?>
+        <li class="dropdown" id="notification_dropdown">
             <a href="#" style="text-align:center" class="dropdown-toggle" id="notification_dropdown_link" data-toggle="dropdown">
             <i class="fa fa-bell"></i> <b class="caret"></b>
             <span class="label label-pill label-danger count" style="border-radius:10px;"></span>
@@ -59,11 +62,11 @@
             </ul>
             <!-- /.Alerts -->
         </li>
+        <?php } ?>
         <!-- /.Item -->
         
         <?php
-          session_start();
-          if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){  ?>
+          if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){  ?>
             <li class="dropdown">
                 <a style="text-align:center;" href="#" class="dropdown-toggle" data-toggle="dropdown"><img id="user_avatar" src="img/uploads/<?php echo $_SESSION['thumb']; ?>"><?php echo ' '.$_SESSION['username']; ?><b class="caret"></b></a>
                 <!-- User -->
@@ -86,7 +89,7 @@
             </li>
           <?php
         }else{ ?>
-          <li><a href="admin">Zaloguj Się</a></li>
+          <li style="text-align:center;"><a href="admin">Zaloguj Się</a></li>
           <?php } ?>
       </ul>
       <!-- /.Item -->
