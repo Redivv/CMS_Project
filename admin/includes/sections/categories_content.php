@@ -9,7 +9,7 @@
         <div class="error-block <?php echo ($cat_title_err === "Dane zostały zapisane") ? 'sent' : '' ?>"><?php echo $cat_title_err; ?></div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" type="submit">Wyślij mnie</button>
+        <button class="btn btn-primary" type="submit">Dodaj Nową Kategorię</button>
       </div>
     </form>
     <!-- /.Category Form -->

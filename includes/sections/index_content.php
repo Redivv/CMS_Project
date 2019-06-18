@@ -23,14 +23,14 @@
             <a href="post.php?id=<?php echo $row['id']; ?>"><?php echo $row['title']; ?></a>
         </h2>
         <p class="lead">
-            by <a href="index.php?author=<?php echo $row['author']; ?>"><?php echo $row['author']; ?></a>
+            Autor <a href="index.php?author=<?php echo $row['author']; ?>"><?php echo $row['author']; ?></a>
         </p>
         <p><span class="glyphicon glyphicon-time"></span> Napisany <?php echo $row['date']; ?></p>
         <hr>
         <a href="post.php?id=<?php echo $row['id']; ?>"><img class="img-responsive post_thumbnail" src="img/uploads/<?php echo $row['img']; ?>" alt=""></a>
         <hr>
         <p><?php if(strlen($row['content']) > 250){echo substr($row['content'],0,250)."...";}else{echo $row['content']."...";} ?></p>
-        <a class="btn btn-primary" href="post.php?id=<?php echo $row['id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="btn btn-primary" href="post.php?id=<?php echo $row['id']; ?>">Czytaj Dalej <span class="glyphicon glyphicon-chevron-right"></span></a>
         <div><h5>Tagi: <?php echo $row['tags']; ?></h5></div>
         <!-- /. Blog Post -->
     <?php } ?>

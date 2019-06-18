@@ -17,14 +17,14 @@
             <a href="post.php?id=<?php echo $v['id']; ?>"><?php echo $v['title']; ?></a>
         </h2>
         <p class="lead">
-            by <a href="index.php"><?php echo $v['author']; ?></a>
+            Autor <a href="index.php?author=<?php echo $v['author']; ?>"><?php echo $v['author']; ?></a>
         </p>
         <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo $v['date']; ?></p>
         <hr>
         <img class="img-responsive post_thumbnail" src="img/uploads/<?php echo $v['img']; ?>" alt="">
         <hr>
         <p><?php if(strlen($v['content']) > 250){echo substr($v['content'],0,250)."...";}else{echo $v['content']."...";} ?></p>
-        <a class="btn btn-primary" href="post.php?id=<?php echo $v['id']; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="btn btn-primary" href="post.php?id=<?php echo $v['id']; ?>">Czytaj Dalej <span class="glyphicon glyphicon-chevron-right"></span></a>
         <!-- /. Blog Post -->
     <?php
        }

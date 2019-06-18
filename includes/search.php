@@ -24,16 +24,16 @@
             <a href="post.php?id='.$row['id'].'">'.$row['title'].'</a>
         </h2>
         <p class="lead">
-            by <a href="index.php">'.$row['author'].'</a>
+            Autor <a href="index.php?author='.$row['author'].'">'.$row['author'].'</a>
         </p>
-        <p><span class="glyphicon glyphicon-time"></span> Posted on '.$row['date'].'</p>
+        <p><span class="glyphicon glyphicon-time"></span> Napisany '.$row['date'].'</p>
         <hr>
         <img class="img-responsive post_thumbnail" src="img/uploads/'.$row['img'].'" alt="">
         <hr>
         <p>';
         if(strlen($row['content']) > 250){$results.=substr($row['content'],0,250)."...";}else{$results .=$row['content']."...";}
         $results.='</p>
-        <a class="btn btn-primary" href="post.php?id='.$row['id'].'">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+        <a class="btn btn-primary" href="post.php?id='.$row['id'].'">Czytaj Dalej <span class="glyphicon glyphicon-chevron-right"></span></a>
         <!-- /. Blog Post -->';
       }
       echo $results;
